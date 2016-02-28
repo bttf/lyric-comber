@@ -22,15 +22,12 @@ export default Ember.Controller.extend({
       const results = fuzzy.filter(this.get('query'),
                                    this.get('allFiles'),
                                    { extract: (file) => file.filename });
-      console.log('searchresults', results);
       return results.map((result) => result.original);
     }
   }),
 
   actions: {
     addDir(dir) {
-      console.log('adding dir', dir);
-
       const newDir = Ember.Object.create({
         path: dir,
         isLoading: true,
