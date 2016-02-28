@@ -42,7 +42,8 @@
     "ember-disable-proxy-controllers": "^1.0.1",
     "ember-electron": "1.1.1",
     "ember-export-application-global": "^1.0.4",
-    "ember-inspector": "1.9.5"
+    "ember-inspector": "1.9.5",
+    "ember-local-storage": "1.1.0"
   },
   "main": "electron.js",
   "ember-electron": {
@@ -79,5 +80,8 @@
       "ProductName": null,
       "InternalName": null
     }
+  },
+  "dependencies": {
+    "fuzzy": "^0.1.1"
   }
 }

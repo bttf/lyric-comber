@@ -1,11 +1,11 @@
 import Ember from 'ember';
 
-const paths = Ember.A([]);
+const dirs = Ember.A([]);
 
 export default Ember.Route.extend({
   model() {
     return Ember.RSVP.hash({
-      paths,
+      dirs,
     });
   },
 

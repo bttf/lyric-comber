@@ -1,3 +1,30 @@
-{{#unless paths.length}}
-You have no directories to scan. Click to add. <button class="btn btn-success btn-circle">{{fa-icon 'plus'}}</button>
+{{#unless dirs.length}}
+
+<div class="prompt">
+  You have no directories to scan. Click to add.
+</div>
+<button class="btn btn-success btn-circle" {{action 'selectDir'}}>{{fa-icon 'plus'}}</button>
+
+{{else}}
+
+{{#each dirs as |dir index|}}
+
+<div>
+  <div class="prompt">
+    📂 {{dir.path}}
+    {{#if dir.isLoading}}{{fa-icon 'cog' spin=true}}{{/if}}
+    <span class="text-success">
+      {{#if dir.isLoaded}}{{fa-icon 'check'}}{{/if}}
+    </span>
+  </div>
+
+  {{#unless index}}
+
+  <button class="btn btn-success btn-circle" {{action 'selectDir'}}>{{fa-icon 'plus'}}</button>
+
+  {{/unless}}
+</div>
+
+{{/each}}
+
 {{/unless}}

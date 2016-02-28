@@ -1,7 +1,14 @@
 {{application-header}}
 
-{{#unless paths.length}}
-  {{directory-picker paths=paths}}
-{{/unless}}
+{{directory-picker dirs=dirs addDir="addDir"}}
+
+{{#if loadedDirs.length}}
+
+  {{search-bar query=query}}
+  {{#each searchResults as |file|}}
+    {{file.filename}}<br>
+  {{/each}}
+
+{{/if}}
 
 {{outlet}}
