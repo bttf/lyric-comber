@@ -1,0 +1,11 @@
+{{#each list as |file|}}
+<div>
+  {{file.artist}} - {{file.title}}
+  <sub><i>{{file.album}}</i></sub>
+  <a href="#" {{action 'download' file}}>{{fa-icon 'download'}}</a>
+</div>
+{{/each}}
+
+{{#if remainingLength}}
+<button class="btn btn-primary-outline btn-sm" {{action 'increaseLimit'}}>{{remainingLength}} more results</button>
+{{/if}}

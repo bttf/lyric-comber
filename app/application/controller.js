@@ -1,8 +1,10 @@
 import Ember from 'ember';
 import { walk } from './walk';
+import { readTags } from './id3';
 
 const path = requireNode('path');
 const fuzzy = requireNode('fuzzy');
+const lyrics = requireNode('node-lyrics');
 
 export default Ember.Controller.extend({
   query: '',
@@ -21,7 +23,7 @@ export default Ember.Controller.extend({
     if (!Ember.isEmpty(this.get('query'))) {
       const results = fuzzy.filter(this.get('query'),
                                    this.get('allFiles'),
-                                   { extract: (file) => file.filename });
+                                   { extract: (file) => `${file.artist} ${file.title} ${file.album} ${file.year} ${file.filename}` });
       return results.map((result) => result.original);
     }
   }),
@@ -36,17 +38,29 @@ export default Ember.Controller.extend({
 
       walk(dir, (err, filepaths) => {
         filepaths.forEach((filepath) => {
-          const file = Ember.Object.create({
-            absolutePath: filepath,
-            filename: path.basename(filepath),
+          readTags(filepath, (err, tags) => {
+            const file = Ember.Object.create({
+              artist: tags.artist,
+              title: tags.title,
+              album: tags.album,
+              year: tags.year,
+              absolutePath: filepath,
+              filename: path.basename(filepath),
+            });
+            newDir.get('files').addObject(file);
           });
-          newDir.get('files').addObject(file);
         });
         newDir.set('isLoading', false);
         newDir.set('isLoaded', true);
       });
 
       this.get('dirs').unshiftObject(newDir);
+    },
+
+    download(file) {
+      lyrics.getSong(file.artist, file.title, function(song) {
+        console.log('what is song', song);
+      });
     },
   },
 });

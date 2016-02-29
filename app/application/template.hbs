@@ -5,9 +5,7 @@
 {{#if loadedDirs.length}}
 
   {{search-bar query=query}}
-  {{#each searchResults as |file|}}
-    {{file.filename}}<br>
-  {{/each}}
+  {{search-results results=searchResults}}
 
 {{/if}}
 
