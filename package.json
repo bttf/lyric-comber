@@ -83,7 +83,6 @@
   },
   "dependencies": {
     "fuzzy": "^0.1.1",
-    "id3js": "^1.1.3",
-    "node-lyrics": "git+https://github.com/bttf/node-lyrics.git"
+    "id3js": "^1.1.3"
   }
 }

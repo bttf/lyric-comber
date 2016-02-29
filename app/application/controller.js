@@ -20,12 +20,10 @@ export default Ember.Controller.extend({
   }),
 
   searchResults: Ember.computed('query', 'allFiles', function() {
-    if (!Ember.isEmpty(this.get('query'))) {
-      const results = fuzzy.filter(this.get('query'),
-                                   this.get('allFiles'),
-                                   { extract: (file) => `${file.artist} ${file.title} ${file.album} ${file.year} ${file.filename}` });
-      return results.map((result) => result.original);
-    }
+    const results = fuzzy.filter(this.get('query'),
+                                 this.get('allFiles'),
+    { extract: (file) => `${file.artist} ${file.title} ${file.album} ${file.year} ${file.filename}` });
+    return results.map((result) => result.original);
   }),
 
   actions: {
