@@ -30,6 +30,8 @@ export default Ember.Controller.extend({
 
   actions: {
     addDir(dir) {
+      const fileReads = Ember.A([]);
+
       const newDir = Ember.Object.create({
         path: dir,
         isLoading: true,
@@ -38,20 +40,27 @@ export default Ember.Controller.extend({
 
       walk(dir, (err, filepaths) => {
         filepaths.forEach((filepath) => {
-          readTags(filepath, (err, tags) => {
-            const file = Ember.Object.create({
-              artist: tags.artist,
-              title: tags.title,
-              album: tags.album,
-              year: tags.year,
-              absolutePath: filepath,
-              filename: path.basename(filepath),
+          fileReads.pushObject(new Ember.RSVP.Promise((resolve, reject) => {
+            readTags(filepath, (err, tags) => {
+              if (err) { reject(err); }
+              const file = Ember.Object.create({
+                artist: tags.artist,
+                title: tags.title,
+                album: tags.album,
+                year: tags.year,
+                absolutePath: filepath,
+                filename: path.basename(filepath),
+              });
+              newDir.get('files').addObject(file);
+              resolve();
             });
-            newDir.get('files').addObject(file);
-          });
+          }));
         });
-        newDir.set('isLoading', false);
-        newDir.set('isLoaded', true);
+
+        Ember.RSVP.all(fileReads).then(() => {
+          newDir.set('isLoading', false);
+          newDir.set('isLoaded', true);
+        });
       });
 
       this.get('dirs').unshiftObject(newDir);
@@ -59,7 +68,6 @@ export default Ember.Controller.extend({
 
     download(file) {
       lyrics.getSong(file.artist, file.title, function(song) {
-        console.log('what is song', song);
       });
     },
   },
