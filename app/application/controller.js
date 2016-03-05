@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import { walk } from './walk';
 import { readTags } from './id3';
+import { scrapeLyrics } from './scraper';
 
 const path = requireNode('path');
 const fuzzy = requireNode('fuzzy');
@@ -18,6 +19,8 @@ export default Ember.Controller.extend({
     });
     return files;
   }),
+
+  filesWithLyrics: [],
 
   searchResults: Ember.computed('query', 'allFiles', function() {
     const results = fuzzy.filter(this.get('query'),
@@ -65,8 +68,25 @@ export default Ember.Controller.extend({
     },
 
     download(file) {
-      lyrics.getSong(file.artist, file.title, function(song) {
+      this.send('searchLyrics', file.artist, file.title, (err, lyrics) => {
+        if (err) { file.error = err; }
+        else { file.lyrics = lyrics; }
+        this.get('filesWithLyrics').addObject(file);
       });
+    },
+
+    searchLyrics(artist, title, cb) {
+      artist = artist.replace(/\s/g, '_');
+      title = title.replace(/\s/g, '_');
+      scrapeLyrics(artist, title, (err, lyrics) => {
+        if (err) { cb(err); }
+        cb(null, lyrics)
+      });
+    },
+
+    setLyrics(lyrics) {
+      console.log('setting lyrics');
+      this.set('lyrics', lyrics);
     },
   },
 });

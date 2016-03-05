@@ -1,12 +1,33 @@
 {{application-header}}
 
-{{directory-picker dirs=dirs addDir="addDir"}}
+<div class="column">
+  {{directory-picker dirs=dirs addDir="addDir"}}
 
-{{#if loadedDirs.length}}
+  {{direct-lyric-search searchLyrics="searchLyrics" setLyrics="setLyrics"}}
 
-  {{search-bar query=query}}
-  {{search-results results=searchResults}}
+  {{#if loadedDirs.length}}
 
-{{/if}}
+    {{search-bar query=query}}
+    {{search-results results=searchResults download="download"}}
+
+  {{/if}}
+</div>
+<div class="column">
+  {{#if lyrics}}
+    <h5>
+      <pre>{{lyrics}}</pre>
+    </h5>
+  {{/if}}
+  {{#if filesWithLyrics.length}}
+    {{#each filesWithLyrics as |file|}}
+    <ul>
+      <li>{{file.artist}} - {{file.title}}</li>
+      <li><pre>{{file.lyrics}}</pre></li>
+    </ul>
+    {{/each}}
+  {{/if}}
+</div>
+
+
 
 {{outlet}}
