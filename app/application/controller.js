@@ -33,7 +33,8 @@ export default Ember.Controller.extend({
     addDir(dir) {
       const fileReads = Ember.A([]);
 
-      const newDir = Ember.Object.create({
+      debugger;
+const newDir = this.store.createRecord('dir', {
         path: dir,
         isLoading: true,
         files: Ember.A([]),
@@ -61,10 +62,9 @@ export default Ember.Controller.extend({
         Ember.RSVP.all(fileReads).then(() => {
           newDir.set('isLoading', false);
           newDir.set('isLoaded', true);
+          newDir.save();
         });
       });
-
-      this.get('dirs').unshiftObject(newDir);
     },
 
     download(file) {
