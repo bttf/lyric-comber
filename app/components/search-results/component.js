@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-const limit = 20;
+const limit = 50;
 
 export default Ember.Component.extend({
   limit,

@@ -1,0 +1,18 @@
+& {
+  margin-top: $appMargin;
+  padding: 0 $appMargin;
+}
+
+small {
+  color: #AAA;
+}
+
+button {
+  margin: $appMargin 0;
+}
+
+.file-listing {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

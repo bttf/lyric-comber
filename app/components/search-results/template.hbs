@@ -1,8 +1,8 @@
 {{#each list as |file|}}
-<div>
-  {{file.artist}} - {{file.title}}
-  <sub><i>{{file.album}}</i></sub>
+<div class="file-listing">
   <a href="#" {{action 'download' file}}>{{fa-icon 'download'}}</a>
+  {{file.artist}} - {{file.title}}
+  <small><i>{{file.album}}</i></small>
 </div>
 {{/each}}
 
