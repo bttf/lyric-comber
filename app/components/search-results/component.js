@@ -22,8 +22,8 @@ export default Ember.Component.extend({
     increaseLimit() {
       this.set('limit', this.get('limit') + limit);
     },
-    download(file) {
-      this.sendAction('download', file);
+    getLyrics(file) {
+      this.sendAction('getLyrics', file);
     },
   },
 });

@@ -1,11 +1,20 @@
 {{#each list as |file|}}
 <div class="file-listing">
-  <a href="#" {{action 'download' file}}>{{fa-icon 'download'}}</a>
-  {{file.artist}} - {{file.title}}
-  <small><i>{{file.album}}</i></small>
+  <div class="file-info">
+    <div class="title">
+      {{#if file.title}}
+        {{file.title}}
+      {{else}}
+        {{file.filename}}
+      {{/if}}
+      <button class="btn btn-secondary btn-sm pull-right" {{action 'getLyrics' file}}>Get Lyrics</button>
+    </div>
+    <div class="artist">{{file.artist}}</div>
+    <div class="album">{{file.album}}</div>
+  </div>
 </div>
 {{/each}}
 
 {{#if remainingLength}}
-<button class="btn btn-primary-outline btn-sm" {{action 'increaseLimit'}}>{{remainingLength}} more results</button>
+<button class="btn btn-primary-outline btn-sm" {{action 'increaseLimit'}}>Show {{limit}} more of {{remainingLength}}</button>
 {{/if}}

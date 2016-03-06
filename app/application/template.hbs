@@ -3,12 +3,17 @@
 <div class="column">
   {{directory-picker dirs=dirs addDir="addDir"}}
 
-  {{direct-lyric-search searchLyrics="searchLyrics" setLyrics="setLyrics"}}
+  {{direct-lyric-search
+    artist=(mut searchArtist)
+    title=(mut searchTitle)
+    searchLyrics="searchLyrics"
+    setLyrics="setLyrics"
+  }}
 
   {{#if loadedDirs.length}}
 
-    {{search-bar query=query}}
-    {{search-results results=searchResults download="download"}}
+    {{search-bar query=(mut query)}}
+    {{search-results results=searchResults getLyrics="getLyrics"}}
 
   {{/if}}
 </div>

@@ -33,7 +33,6 @@ export default Ember.Controller.extend({
     addDir(dir) {
       const fileReads = Ember.A([]);
 
-      debugger;
 const newDir = this.store.createRecord('dir', {
         path: dir,
         isLoading: true,
@@ -67,14 +66,6 @@ const newDir = this.store.createRecord('dir', {
       });
     },
 
-    download(file) {
-      this.send('searchLyrics', file.artist, file.title, (err, lyrics) => {
-        if (err) { file.error = err; }
-        else { file.lyrics = lyrics; }
-        this.get('filesWithLyrics').addObject(file);
-      });
-    },
-
     searchLyrics(artist, title, cb) {
       artist = artist.replace(/\s/g, '_');
       title = title.replace(/\s/g, '_');
@@ -85,8 +76,17 @@ const newDir = this.store.createRecord('dir', {
     },
 
     setLyrics(lyrics) {
-      console.log('setting lyrics');
       this.set('lyrics', lyrics);
+    },
+
+    getLyrics(file) {
+      const artist = file.artist;
+      const title = file.title || file.filename;
+      this.set('searchArtist', artist);
+      this.set('searchTitle', title);
+      this.send('searchLyrics', artist, title, (err, lyrics) => {
+        this.send('setLyrics', lyrics);
+      });
     },
   },
 });
