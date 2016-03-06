@@ -1,6 +1,27 @@
 @import './variables';
 @import 'pod-styles';
 
+body {
+  overflow-y: scroll;
+}
+
+.lyrics {
+  position: fixed;
+  top: $appHeaderHeight;
+  right: 0;
+  bottom: 0;
+  overflow-y: scroll;
+}
+
+.control-panel {
+  position: fixed;
+  top: $appHeaderHeight;
+  left: 0;
+  width: 50%;
+  height: $controlPanelHeight;
+  background-color: #FFF;
+}
+
 .column {
   float: left;
   width: 50%;

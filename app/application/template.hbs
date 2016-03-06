@@ -1,38 +1,29 @@
 {{application-header}}
 
 <div class="column">
-  {{directory-picker dirs=dirs addDir="addDir"}}
+  <div class="control-panel">
+    {{directory-picker dirs=dirs addDir="addDir"}}
 
-  {{direct-lyric-search
-    artist=(mut searchArtist)
-    title=(mut searchTitle)
-    searchLyrics="searchLyrics"
-    setLyrics="setLyrics"
-  }}
-
-  {{#if loadedDirs.length}}
+    {{direct-lyric-search
+      artist=(mut searchArtist)
+      title=(mut searchTitle)
+      searchLyrics="searchLyrics"
+      setLyrics="setLyrics"
+    }}
 
     {{search-bar query=(mut query)}}
-    {{search-results results=searchResults getLyrics="getLyrics"}}
+  </div>
 
-  {{/if}}
+  {{search-results results=searchResults getLyrics="getLyrics"}}
+
 </div>
-<div class="column">
+
+<div class="column lyrics">
   {{#if lyrics}}
     <h5>
       <pre>{{lyrics}}</pre>
     </h5>
   {{/if}}
-  {{#if filesWithLyrics.length}}
-    {{#each filesWithLyrics as |file|}}
-    <ul>
-      <li>{{file.artist}} - {{file.title}}</li>
-      <li><pre>{{file.lyrics}}</pre></li>
-    </ul>
-    {{/each}}
-  {{/if}}
 </div>
-
-
 
 {{outlet}}

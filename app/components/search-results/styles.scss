@@ -1,6 +1,12 @@
 & {
-  margin-top: $appMargin;
+  position: fixed;
+  top: $appHeaderHeight + $controlPanelHeight + 25px;
+  left: 0;
+  bottom: 0;
+  width: 50%;
   padding: 0 $appMargin;
+  overflow-y: scroll;
+  /*margin-top: $appHeaderHeight + $controlPanelHeight + 25px;*/
 }
 
 small {

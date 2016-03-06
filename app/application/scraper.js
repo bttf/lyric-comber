@@ -11,11 +11,13 @@ export function scrapeLyrics(artist, song, callback) {
 
   let lyrics = '';
   let url = encodeURI(`http://lyrics.wikia.com/wiki/${artist}\:${song}`);
+  console.log('debug', url);
 
   request(url, (err, response, html) => {
-    console.log('making request');
-    if(err) { console.log('request err'); callback(error, null); }
+    console.log('made request, received response');
+    if(err) { console.log('request err'); callback(err, null); }
     else {
+      console.log('no errors');
           const $ = cheerio.load(html);
           $('script').remove();
 
@@ -42,8 +44,8 @@ export function scrapeLyrics(artist, song, callback) {
             };
 
             const source = '(?:' + _.keys(map).join('|') + ')';
-            const testRegexp = RegExp(source);
-            const replaceRegexp = RegExp(source, 'g');
+            const testRegexp = new RegExp(source);
+            const replaceRegexp = new RegExp(source, 'g');
             return function(string) {
               string = string === null ? '' : '' + string;
               return testRegexp.test(string) ? string.replace(replaceRegexp, escaper) : string;
@@ -64,7 +66,7 @@ export function scrapeLyrics(artist, song, callback) {
           lyrics = lyrics.replace(/<[^>]*>/g, '');
 
           //console.log(lyrics);
-          if(lyrics != ""){
+          if(lyrics !== ""){
             callback(null, lyrics);
           }
           else{
