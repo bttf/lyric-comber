@@ -75,7 +75,9 @@ const newDir = this.store.createRecord('dir', {
       });
     },
 
-    setLyrics(lyrics) {
+    setLyrics(lyrics, artist, title) {
+      this.set('lyricsArtist', artist);
+      this.set('lyricsTitle', title);
       this.set('lyrics', lyrics);
     },
 
@@ -85,7 +87,7 @@ const newDir = this.store.createRecord('dir', {
       this.set('searchArtist', artist);
       this.set('searchTitle', title);
       this.send('searchLyrics', artist, title, (err, lyrics) => {
-        this.send('setLyrics', lyrics);
+        this.send('setLyrics', lyrics, artist, title);
       });
     },
   },

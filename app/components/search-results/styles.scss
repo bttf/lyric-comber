@@ -6,7 +6,6 @@
   width: 50%;
   padding: 0 $appMargin;
   overflow-y: scroll;
-  /*margin-top: $appHeaderHeight + $controlPanelHeight + 25px;*/
 }
 
 small {
@@ -24,7 +23,7 @@ h4 {
 }
 
 .file-info {
-  margin-bottom: 0.5em;
+  padding: 0.25em 0;
 
   &:hover {
     background-color: rgba(#cdff03, 0.1);

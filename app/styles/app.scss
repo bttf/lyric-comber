@@ -10,7 +10,9 @@ body {
   top: $appHeaderHeight;
   right: 0;
   bottom: 0;
+  padding-left: $appMargin;
   overflow-y: scroll;
+  word-wrap: break-word;
 }
 
 .control-panel {
