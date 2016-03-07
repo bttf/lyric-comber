@@ -5,7 +5,6 @@ import { scrapeLyrics } from './scraper';
 
 const path = requireNode('path');
 const fuzzy = requireNode('fuzzy');
-const lyrics = requireNode('node-lyrics');
 
 export default Ember.Controller.extend({
   query: '',
