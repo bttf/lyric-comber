@@ -2,7 +2,15 @@
   <h4>Search by Artist and Title</h4>
 </div>
 
-{{input type="text" class="form-control" value=artist placeholder="Artist"}}
-{{input type="text" class="form-control" value=title placeholder="Title"}}
+<form>
+  {{input type="text" class="form-control" value=artist placeholder="Artist"}}
+  {{input type="text" class="form-control" value=title placeholder="Title"}}
 
-<button class="btn btn-primary btn-sm" {{action "search" artist title}}>Submit</button>
+  <button class="btn btn-success btn-circle search-btn" {{action "search" artist title}}>
+    {{#if areLyricsLoading}}
+      {{fa-icon "cog" spin=true}}
+    {{else}}
+      {{fa-icon "arrow-right"}}
+    {{/if}}
+  </button>
+</form>
