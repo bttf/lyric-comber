@@ -6,7 +6,7 @@ export default Ember.Component.extend({
       this.sendAction('searchLyrics', artist, title, (err, lyrics) => {
         if (err) { console.log(err); }
         else {
-          this.sendAction('setLyrics', lyrics);
+          this.sendAction('setLyrics', lyrics, artist, title);
         }
       });
     },

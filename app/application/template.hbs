@@ -1,21 +1,7 @@
-{{application-header}}
+{{nav-bar}}
 
 <div class="column">
-  <div class="control-panel">
-    {{directory-picker dirs=dirs addDir="addDir"}}
-
-    {{direct-lyric-search
-      artist=(mut searchArtist)
-      title=(mut searchTitle)
-      searchLyrics="searchLyrics"
-      setLyrics="setLyrics"
-    }}
-
-    {{search-bar query=(mut query)}}
-  </div>
-
-  {{search-results results=searchResults getLyrics="getLyrics"}}
-
+  {{outlet}}
 </div>
 
 <div class="column lyrics">
@@ -27,4 +13,3 @@
   {{/if}}
 </div>
 
-{{outlet}}

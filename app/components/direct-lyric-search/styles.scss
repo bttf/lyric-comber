@@ -1,9 +1,10 @@
-& {
-  margin: 1em $appMargin;
+// scss-lint:disable UnnecessaryParentReference
+h4 {
+  font-weight: 300;
 }
 
 input {
-  font-size: 100%;
   display: inline-block;
+  font-size: 100%;
   width: 13em;
 }

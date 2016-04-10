@@ -1,20 +1,25 @@
+// scss-lint:disable UnnecessaryParentReference
 & {
   width: 100%;
 }
+
+h4 {
+  font-weight: 300;
+}
+
 .prompt {
-  margin: 0 0.25em 0.25em $appMargin;
-  color: #AAA;
+  background-color: rgba($gray80, .3);
+  border-radius: 20px;
+  color: $gray170;
+  display: inline-block;
   font-weight: 100;
   letter-spacing: 1px;
-  background-color: rgba(#CCC, 0.3);
-  border-radius: 20px;
-  padding: 0.35em 1.25em;
-  display: inline-block;
   max-width: 80%;
-  text-overflow: ellipsis;
-  white-space: nowrap;
   overflow: hidden;
+  padding: .35em 1.25em;
+  text-overflow: ellipsis;
   vertical-align: middle;
+  white-space: nowrap;
 }
 
 button:focus {
@@ -22,11 +27,11 @@ button:focus {
 }
 
 .btn-circle {
-  width: 25px;
-  height: 25px;
-  text-align: center;
-  padding: 4.5px 0;
-  font-size: 10px;
-  line-height: 1.428571429;
   border-radius: 50%;
+  font-size: 10px;
+  height: 25px;
+  line-height: 1.428571429;
+  padding: 4.5px 0;
+  text-align: center;
+  width: 25px;
 }

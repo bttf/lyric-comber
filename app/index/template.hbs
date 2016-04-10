@@ -1,1 +1,16 @@
-{{outlet}}
+{{direct-lyric-search
+  artist=(mut searchArtist)
+  title=(mut searchTitle)
+  searchLyrics="searchLyrics"
+  setLyrics="setLyrics"
+}}
+
+<hr>
+
+{{#if loadedDirs.length}}
+  {{search-bar class="m-t-1" query=(mut query)}}
+{{else}}
+  <h5 class="m-t-1 text-muted">Looks like you have no local directories added. Go to {{#link-to "settings"}}Settings{{/link-to}} to add some.</h5>
+{{/if}}
+
+{{search-results results=searchResults getLyrics="getLyrics"}}
