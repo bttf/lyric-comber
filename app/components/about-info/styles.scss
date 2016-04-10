@@ -2,6 +2,10 @@ a {
   cursor: pointer;
 }
 
-h4, h6 {
+h2, h4, h6 {
   font-weight: 300;
+}
+
+h2 small {
+  font-size: 12px;
 }
